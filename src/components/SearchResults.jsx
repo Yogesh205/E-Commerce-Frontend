@@ -11,16 +11,9 @@ function SearchResults() {
     const fetchSearchResults = async () => {
       try {
         const response = await axios.get(
-          "https://api.unsplash.com/search/photos",
-          {
-            params: {
-              client_id: import.meta.env.VITE_UNSPLASH_KEY,
-              query: query,
-              per_page: 12,
-            },
-          }
+          `https://e-commerce-backend-w87v.onrender.com/api/v1/products/search?query=${query}`
         );
-        setProducts(response.data.results);
+        setProducts(response.data); // ✅ Backend se search results fetch ho rahe hain
       } catch (error) {
         console.error("Error fetching search results:", error);
       } finally {
@@ -44,18 +37,16 @@ function SearchResults() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {products.map((product) => (
-            <div key={product.id} className="bg-gray-800 p-4 rounded-lg">
+            <div key={product._id} className="bg-gray-800 p-4 rounded-lg">
               <img
-                src={product.urls.regular}
-                alt={product.alt_description}
+                src={product.image} // ✅ Backend se image le raha hai
+                alt={product.name}
                 className="w-full h-40 object-cover rounded-md"
               />
               <h3 className="mt-4 text-sm font-semibold text-center">
-                {product.alt_description || "Product"}
+                {product.name}
               </h3>
-              <p className="text-gray-400 text-center">
-                ₹{Math.floor(Math.random() * 5000) + 500}
-              </p>
+              <p className="text-gray-400 text-center">₹{product.price}</p>
             </div>
           ))}
         </div>
