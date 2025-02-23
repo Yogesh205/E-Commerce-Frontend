@@ -12,7 +12,7 @@ function ProductPage({ addToCart }) {
       try {
         // Fetch product details from your backend
         const response = await axios.get(
-          "https://e-commerce-website-backend-s4e5.onrender.com/api/products"
+          "https://e-commerce-backend-w87v.onrender.com/api/products"
         );
         setProducts(response.data);
 

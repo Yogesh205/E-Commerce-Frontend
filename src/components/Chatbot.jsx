@@ -20,7 +20,7 @@ function Chatbot() {
 
     try {
       const response = await axios.post(
-        "https://e-commerce-backend-r4fm.onrender.com/api/v1/chat",
+        "https://e-commerce-backend-w87v.onrender.com/api/v1/chat",
         {
           message: input,
         }
